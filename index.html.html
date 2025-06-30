@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3b1b05b6b071b7db0d5a54836b56ae08 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+<script>
+const searchableLayers = [{"type": "Plot_no", "id": "197", "lat": 26.067659501139463, "lng": 92.86208806774866}, {"type": "Plot_no", "id": "196", "lat": 26.068030331942953, "lng": 92.8619486682828}, {"type": "Plot_no", "id": "193", "lat": 26.068318393736636, "lng": 92.861839404238}, {"type": "Plot_no", "id": "214", "lat": 26.06365014356585, "lng": 92.86418635162859}, {"type": "Plot_no", "id": "215", "lat": 26.063802414072615, "lng": 92.86415535893892}, {"type": "Plot_no", "id": "268", "lat": 26.063811594256915, "lng": 92.86435268355154}, {"type": "Plot_no", "id": "216", "lat": 26.06441045619905, "lng": 92.8639236219874}, {"type": "Plot_no", "id": "267", "lat": 26.064084486172142, "lng": 92.86429580686718}, {"type": "Plot_no", "id": "269", "lat": 26.06353562908673, "lng": 92.86445016808347}, {"type": "Plot_no", "id": "217", "lat": 26.06511284722884, "lng": 92.86352752637512}, {"type": "Plot_no", "id": "218", "lat": 26.065670495919115, "lng": 92.86323242221478}, {"type": "Plot_no", "id": "206", "lat": 26.06605299397569, "lng": 92.86291366587739}, {"type": "Plot_no", "id": "205", "lat": 26.06637950358905, "lng": 92.86283209626113}, {"type": "Plot_no", "id": "204", "lat": 26.0663492558535, "lng": 92.86263081224875}, {"type": "Plot_no", "id": "203", "lat": 26.066648551990017, "lng": 92.86255843629958}, {"type": "Plot_no", "id": "221", "lat": 26.066668835931228, "lng": 92.86276340148274}, {"type": "Plot_no", "id": "202", "lat": 26.06683245320913, "lng": 92.86272258813915}, {"type": "Plot_no", "id": "231", "lat": 26.066765632544953, "lng": 92.86272663858578}, {"type": "Plot_no", "id": "201", "lat": 26.066957349231235, "lng": 92.86245120228394}, {"type": "Plot_no", "id": "200", "lat": 26.067293062432007, "lng": 92.8622539727539}, {"type": "Tower_No", "id": "23/2", "lat": 26.064955179851687, "lng": 92.86361995620102}, {"type": "Tower_No", "id": "23/3", "lat": 26.067240522370245, "lng": 92.86228818613661}];
+const searchValues = {"Plot_no": ["197", "196", "193", "214", "215", "268", "216", "267", "269", "217", "218", "206", "205", "204", "203", "221", "202", "231", "201", "200"], "Tower_No": ["23/2", "23/3"]};
+</script>
+    
+<script>
+window.addEventListener('load', function() {
+  for (let key in window) {
+    if (key.startsWith("map_") && window[key]._initHooksCalled) {
+      window.map = window[key];
+      break;
+    }
+  }
+});
+</script>
+    
+<style>
+#infoBox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  font-size: 13px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 250px;
+}
+#infoBox h4 {
+  margin-top: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+#infoContent b {
+  color: #333;
+}
+</style>
+<div id="infoBox">
+  <h4>🛈 Info Panel</h4>
+  <div id="infoContent">Hover on a Plot or Tower</div>
+</div>
+
+<script>
+function setInfoContent(html) {
+  document.getElementById("infoContent").innerHTML = html;
+}
+
+function attachHoverListeners(layer, htmlContent) {
+  layer.on("mouseover", function () {
+    setInfoContent(htmlContent);
+  });
+  layer.on("mouseout", function () {
+    setInfoContent("Plot or Tower");
+  });
+}
+
+setTimeout(function () {
+  if (window.map) {
+    window.map.eachLayer(function (layer) {
+      if (layer.feature && layer.feature.properties && layer.feature.properties.search_type) {
+        let props = layer.feature.properties;
+        let content = "";
+        for (let key in props) {
+          if (key !== "search_type" && key !== "search_id") {
+            content += `<b>${key}:</b> ${props[key]}<br>`;
+          }
+        }
+        attachHoverListeners(layer, content);
+      }
+    });
+  }
+}, 500);
+</script>
+    
+            <div class="folium-map" id="map_3b1b05b6b071b7db0d5a54836b56ae08" ></div>
+        
+    
+<style>
+#searchBox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  font-size: 13px;
+  width: 230px;
+}
+#searchBox select, #searchBox input {
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px;
+}
+</style>
+<div id="searchBox">
+  <b>🔍 Search Map</b><br>
+  <select id="searchLayer" onchange="updateDatalist()">
+    <option value="Plot_no">Plot_no</option>
+    <option value="Tower_No">Tower_No</option>
+  </select>
+  <input list="searchOptions" id="searchAttr" placeholder="Enter number..." />
+  <datalist id="searchOptions"></datalist>
+</div>
+
+<script>
+function updateDatalist() {
+  const type = document.getElementById("searchLayer").value;
+  const datalist = document.getElementById("searchOptions");
+  datalist.innerHTML = "";
+  if (searchValues[type]) {
+    searchValues[type].forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      datalist.appendChild(opt);
+    });
+  }
+}
+updateDatalist();
+
+document.getElementById("searchAttr").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    const val = this.value.trim().toLowerCase();
+    const type = document.getElementById("searchLayer").value;
+    const match = searchableLayers.find(item => item.type === type && item.id === val);
+    if (match) {
+      window.map.setView([match.lat, match.lng], 18);
+      const circle = L.circle([match.lat, match.lng], {
+        radius: 25,
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5
+      }).addTo(window.map);
+      L.popup().setLatLng([match.lat, match.lng]).setContent(type + ": " + match.id.toUpperCase()).openOn(window.map);
+      setTimeout(() => { window.map.removeLayer(circle); }, 2000);
+    } else {
+      alert("❌ No match found for " + type);
+    }
+  }
+});
+</script>
+</body>
+<script>
+    
+    
+            var map_3b1b05b6b071b7db0d5a54836b56ae08 = L.map(
+                "map_3b1b05b6b071b7db0d5a54836b56ae08",
+                {
+                    center: [26.065810197645035, 92.86312168501436],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_4283aeaaed4addc56314779095e65436 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_4283aeaaed4addc56314779095e65436.addTo(map_3b1b05b6b071b7db0d5a54836b56ae08);
+        
+    
+        function geo_json_3c2fd42c7912569ca420099f15385998_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "blue", "fillOpacity": 0.1, "weight": 2};
+            }
+        }
+
+        function geo_json_3c2fd42c7912569ca420099f15385998_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_3c2fd42c7912569ca420099f15385998 = L.geoJson(null, {
+                onEachFeature: geo_json_3c2fd42c7912569ca420099f15385998_onEachFeature,
+            
+                style: geo_json_3c2fd42c7912569ca420099f15385998_styler,
+            ...{
+}
+        });
+
+        function geo_json_3c2fd42c7912569ca420099f15385998_add (data) {
+            geo_json_3c2fd42c7912569ca420099f15385998
+                .addData(data);
+        }
+            geo_json_3c2fd42c7912569ca420099f15385998_add({"features": [{"geometry": {"coordinates": [[[92.86317320329891, 26.065382551614213], [92.86270461226617, 26.06618669359327], [92.86129058137003, 26.068613213922802], [92.86160024209155, 26.068760408818854], [92.86495278275265, 26.063007133371467], [92.86464313289818, 26.062859945592393], [92.86317320329891, 26.065382551614213]]], "type": "Polygon"}, "id": "0", "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_3c2fd42c7912569ca420099f15385998.addTo(map_3b1b05b6b071b7db0d5a54836b56ae08);
+        
+    
+            var feature_group_2c20c01968bc6a197199a29004d37b85 = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_742902a06ce246097ce49052e3ebe76c_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_742902a06ce246097ce49052e3ebe76c_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_742902a06ce246097ce49052e3ebe76c_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_742902a06ce246097ce49052e3ebe76c.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_742902a06ce246097ce49052e3ebe76c_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_742902a06ce246097ce49052e3ebe76c = L.geoJson(null, {
+                onEachFeature: geo_json_742902a06ce246097ce49052e3ebe76c_onEachFeature,
+            
+                style: geo_json_742902a06ce246097ce49052e3ebe76c_styler,
+            ...{
+}
+        });
+
+        function geo_json_742902a06ce246097ce49052e3ebe76c_add (data) {
+            geo_json_742902a06ce246097ce49052e3ebe76c
+                .addData(data);
+        }
+            geo_json_742902a06ce246097ce49052e3ebe76c_add({"features": [{"geometry": {"coordinates": [[[92.86225328653515, 26.06745893767686, 0.0], [92.86193291943148, 26.067538653965396, 0.0], [92.86193199114669, 26.067553637456943, 0.0], [92.8619008768672, 26.067730629071086, 0.0], [92.8618832119176, 26.0678896788859, 0.0], [92.86213252842337, 26.06784695535374, 0.0], [92.8623727840048, 26.067434654153708, 0.0], [92.86225328653515, 26.06745893767686, 0.0]]], "type": "Polygon"}, "properties": {"Area": "1356.55273315447", "Classi_Lan": "shaali toli", "PATTA_NO": 145, "Plot_no": 197, "Typeofland": "Private Land", "WonerName": "Smt. Moti Lobonga Bala Das (Husband - Gunai Ram Das), Shri Barindra Chandra Das (Father - Gunai Das), Smt. Moti Chanchali Bala Devi (Husband - Rabindra Kumar Das), Gulzar Alam (Izzat Ali), Afsana Begum (Kafil Uddin), Shariful Islam (Adam Ali), Rashia Beg", "search_id": "197", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_742902a06ce246097ce49052e3ebe76c.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_0cc2b4ca6ae191c25e6d6117df2dcd1d = L.marker(
+                [26.067659501139463, 92.86208806774866],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_c61720282ea0b2fc4355788d77ff475b = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e197\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_0cc2b4ca6ae191c25e6d6117df2dcd1d.setIcon(div_icon_c61720282ea0b2fc4355788d77ff475b);
+            
+    
+        function geo_json_b4a61a1768f64fac0604593c224f19b3_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_b4a61a1768f64fac0604593c224f19b3_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_b4a61a1768f64fac0604593c224f19b3_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_b4a61a1768f64fac0604593c224f19b3.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_b4a61a1768f64fac0604593c224f19b3_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_b4a61a1768f64fac0604593c224f19b3 = L.geoJson(null, {
+                onEachFeature: geo_json_b4a61a1768f64fac0604593c224f19b3_onEachFeature,
+            
+                style: geo_json_b4a61a1768f64fac0604593c224f19b3_styler,
+            ...{
+}
+        });
+
+        function geo_json_b4a61a1768f64fac0604593c224f19b3_add (data) {
+            geo_json_b4a61a1768f64fac0604593c224f19b3
+                .addData(data);
+        }
+            geo_json_b4a61a1768f64fac0604593c224f19b3_add({"features": [{"geometry": {"coordinates": [[[92.8618832119176, 26.0678896788859, 0.0], [92.8618762035583, 26.067952779890867, 0.0], [92.86186427661853, 26.06806016604563, 0.0], [92.86182331431743, 26.068283275357096, 0.0], [92.86188607449142, 26.068269893506894, 0.0], [92.86213252842337, 26.06784695535374, 0.0], [92.8618832119176, 26.0678896788859, 0.0]]], "type": "Polygon"}, "properties": {"Area": "642.86494221894", "Classi_Lan": "shaali toli", "PATTA_NO": 92, "Plot_no": 196, "Typeofland": "Private Land", "WonerName": "Shri Sonamani Das (Father - Sarat Chandra Das), Shri Daul Govinda Das (Father - Sarat Chandra Das), Shri Shankar Das (Father - Sonamani Das), Smt. Moti Hemangini Das (Husband - Late Daul Govinda Das), Md. Monir Uddin (Father - Late Royesh Mia), Md. Mahib", "search_id": "196", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_b4a61a1768f64fac0604593c224f19b3.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_d429473d857fa3d5e96758c6c8fa7ddb = L.marker(
+                [26.068030331942953, 92.8619486682828],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_65e6b9c40134887e27c9ec935f7fd610 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e196\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_d429473d857fa3d5e96758c6c8fa7ddb.setIcon(div_icon_65e6b9c40134887e27c9ec935f7fd610);
+            
+    
+        function geo_json_5179560848abbf5c943fe2c05f7a1c25_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_5179560848abbf5c943fe2c05f7a1c25_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_5179560848abbf5c943fe2c05f7a1c25_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_5179560848abbf5c943fe2c05f7a1c25.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_5179560848abbf5c943fe2c05f7a1c25_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_5179560848abbf5c943fe2c05f7a1c25 = L.geoJson(null, {
+                onEachFeature: geo_json_5179560848abbf5c943fe2c05f7a1c25_onEachFeature,
+            
+                style: geo_json_5179560848abbf5c943fe2c05f7a1c25_styler,
+            ...{
+}
+        });
+
+        function geo_json_5179560848abbf5c943fe2c05f7a1c25_add (data) {
+            geo_json_5179560848abbf5c943fe2c05f7a1c25
+                .addData(data);
+        }
+            geo_json_5179560848abbf5c943fe2c05f7a1c25_add({"features": [{"geometry": {"coordinates": [[[92.86182331431743, 26.068283275357096, 0.0], [92.8618224438545, 26.06828801649692, 0.0], [92.86180913861739, 26.06840192271097, 0.0], [92.86188607449142, 26.068269893506894, 0.0], [92.86182331431743, 26.068283275357096, 0.0]]], "type": "Polygon"}, "properties": {"Area": "40.4083991178158", "Classi_Lan": "shaali toli", "PATTA_NO": 136, "Plot_no": 193, "Typeofland": "Private Land", "WonerName": "Shri Dinnath Sahirya Das (Father - Nimai Ram), Shri Nripendra Sahirya Das (Father - Nimai Ram), Shri Rabindra Das (Father - Late Churai Ram Das), Abdul Rajak (Sona Mia).", "search_id": "193", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_5179560848abbf5c943fe2c05f7a1c25.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_167452bc6425adbf5c1bc1201ba3f70c = L.marker(
+                [26.068318393736636, 92.861839404238],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_1e059579783473146663a1f52a213f6f = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e193\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_167452bc6425adbf5c1bc1201ba3f70c.setIcon(div_icon_1e059579783473146663a1f52a213f6f);
+            
+    
+        function geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_657b89ac0b9b2d8a8ab28beb99e68e48.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_657b89ac0b9b2d8a8ab28beb99e68e48 = L.geoJson(null, {
+                onEachFeature: geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_onEachFeature,
+            
+                style: geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_styler,
+            ...{
+}
+        });
+
+        function geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_add (data) {
+            geo_json_657b89ac0b9b2d8a8ab28beb99e68e48
+                .addData(data);
+        }
+            geo_json_657b89ac0b9b2d8a8ab28beb99e68e48_add({"features": [{"geometry": {"coordinates": [[[92.86417954632886, 26.063655538813965, 0.0], [92.86419051358064, 26.063655568428366, 0.0], [92.86418899497629, 26.063639323455217, 0.0], [92.86417954632886, 26.063655538813965, 0.0]]], "type": "Polygon"}, "properties": {"Area": "0.986517311951124", "Classi_Lan": "shaali toli", "PATTA_NO": 34, "Plot_no": 214, "Typeofland": "Private Land", "WonerName": "Md. Taij Uddin (Father: Ahmunchi), Mosha: Aijan Bibi (Husband: Taij Uddin)\n\n\n\n", "search_id": "214", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_657b89ac0b9b2d8a8ab28beb99e68e48.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_826a79f6355333267c91d63b4cc388d4 = L.marker(
+                [26.06365014356585, 92.86418635162859],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_f43bd16b45a9d6dec5827279a792d3d1 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e214\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_826a79f6355333267c91d63b4cc388d4.setIcon(div_icon_f43bd16b45a9d6dec5827279a792d3d1);
+            
+    
+        function geo_json_20f6ef79e74646a1527e7dd245ad0ed6_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_20f6ef79e74646a1527e7dd245ad0ed6_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_20f6ef79e74646a1527e7dd245ad0ed6_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_20f6ef79e74646a1527e7dd245ad0ed6.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_20f6ef79e74646a1527e7dd245ad0ed6_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_20f6ef79e74646a1527e7dd245ad0ed6 = L.geoJson(null, {
+                onEachFeature: geo_json_20f6ef79e74646a1527e7dd245ad0ed6_onEachFeature,
+            
+                style: geo_json_20f6ef79e74646a1527e7dd245ad0ed6_styler,
+            ...{
+}
+        });
+
+        function geo_json_20f6ef79e74646a1527e7dd245ad0ed6_add (data) {
+            geo_json_20f6ef79e74646a1527e7dd245ad0ed6
+                .addData(data);
+        }
+            geo_json_20f6ef79e74646a1527e7dd245ad0ed6_add({"features": [{"geometry": {"coordinates": [[[92.86422253089384, 26.063825209360864, 0.0], [92.86422305969904, 26.063795857376714, 0.0], [92.86419051358064, 26.063655568428366, 0.0], [92.86417954632886, 26.063655538813965, 0.0], [92.8640424002408, 26.063890902400946, 0.0], [92.86419560688057, 26.063879130152547, 0.0], [92.8642326541243, 26.063876283453773, 0.0], [92.86422253089384, 26.063825209360864, 0.0]]], "type": "Polygon"}, "properties": {"Area": "255.553093108698", "Classi_Lan": "shaali toli", "PATTA_NO": 132, "Plot_no": 215, "Typeofland": "Private Land", "WonerName": "Mrs. Kustambala Devi (Husband: Suresh)\n\n\n\n", "search_id": "215", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_20f6ef79e74646a1527e7dd245ad0ed6.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_97bb191c5fddc3b5ac3ea57b35d5584c = L.marker(
+                [26.063802414072615, 92.86415535893892],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_1045f30a8d0f51fab83edb02352924c0 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e215\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_97bb191c5fddc3b5ac3ea57b35d5584c.setIcon(div_icon_1045f30a8d0f51fab83edb02352924c0);
+            
+    
+        function geo_json_295d00be07f8052d4b918bec3f7ba7bd_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_295d00be07f8052d4b918bec3f7ba7bd_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_295d00be07f8052d4b918bec3f7ba7bd_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_295d00be07f8052d4b918bec3f7ba7bd.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_295d00be07f8052d4b918bec3f7ba7bd_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_295d00be07f8052d4b918bec3f7ba7bd = L.geoJson(null, {
+                onEachFeature: geo_json_295d00be07f8052d4b918bec3f7ba7bd_onEachFeature,
+            
+                style: geo_json_295d00be07f8052d4b918bec3f7ba7bd_styler,
+            ...{
+}
+        });
+
+        function geo_json_295d00be07f8052d4b918bec3f7ba7bd_add (data) {
+            geo_json_295d00be07f8052d4b918bec3f7ba7bd
+                .addData(data);
+        }
+            geo_json_295d00be07f8052d4b918bec3f7ba7bd_add({"features": [{"geometry": {"coordinates": [[[92.86448081268738, 26.063659336972396, 0.0], [92.86428709337041, 26.063660373793436, 0.0], [92.86419051358064, 26.063655568428366, 0.0], [92.86422305969904, 26.063795857376714, 0.0], [92.86422253089384, 26.063825209360864, 0.0], [92.8642326541243, 26.063876283453773, 0.0], [92.86425361923952, 26.06398205727842, 0.0], [92.86426063258428, 26.064044689195093, 0.0], [92.86434671102913, 26.064047209516346, 0.0], [92.86457237925441, 26.063659941592974, 0.0], [92.86448081268738, 26.063659336972396, 0.0]]], "type": "Polygon"}, "properties": {"Area": "989.00412720471", "Classi_Lan": "shaali toli", "PATTA_NO": 18, "Plot_no": 268, "Typeofland": "Private Land", "WonerName": "Mr. Nirendra Majumdar (Father: Harmohan), Mr. Bhupendra Majumdar (Father: Harmohan), Mr. Fayzur Rahman (Father: Tuka Mia), Ms. Jesmina Khanam (Father: Mubashir Ali Laskar), Ms. Ayesha Siddika (Father: Abu Bakkar), Ms. Nasrin Parbin (Father: Nijam Uddin)", "search_id": "268", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_295d00be07f8052d4b918bec3f7ba7bd.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_4f40e3748371a8a550eac073f24cf89c = L.marker(
+                [26.063811594256915, 92.86435268355154],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_b4505b9e7574e22b9ddd8dd8e51ee52f = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e268\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_4f40e3748371a8a550eac073f24cf89c.setIcon(div_icon_b4505b9e7574e22b9ddd8dd8e51ee52f);
+            
+    
+        function geo_json_6605a7816a048a1ee315f629ed097259_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_6605a7816a048a1ee315f629ed097259_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_6605a7816a048a1ee315f629ed097259_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_6605a7816a048a1ee315f629ed097259.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_6605a7816a048a1ee315f629ed097259_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_6605a7816a048a1ee315f629ed097259 = L.geoJson(null, {
+                onEachFeature: geo_json_6605a7816a048a1ee315f629ed097259_onEachFeature,
+            
+                style: geo_json_6605a7816a048a1ee315f629ed097259_styler,
+            ...{
+}
+        });
+
+        function geo_json_6605a7816a048a1ee315f629ed097259_add (data) {
+            geo_json_6605a7816a048a1ee315f629ed097259
+                .addData(data);
+        }
+            geo_json_6605a7816a048a1ee315f629ed097259_add({"features": [{"geometry": {"coordinates": [[[92.86426063258428, 26.064044689195093, 0.0], [92.86425361923952, 26.06398205727842, 0.0], [92.8642326541243, 26.063876283453773, 0.0], [92.86419560688057, 26.063879130152547, 0.0], [92.8640424002408, 26.063890902400946, 0.0], [92.8634415819126, 26.064921985439515, 0.0], [92.8635074814823, 26.06490834173885, 0.0], [92.86365560120008, 26.06487667380089, 0.0], [92.8638956962685, 26.064821193312806, 0.0], [92.8642800769881, 26.064161559804976, 0.0], [92.86426063258428, 26.064044689195093, 0.0]]], "type": "Polygon"}, "properties": {"Area": "4016.14458034034", "Classi_Lan": "shaali toli", "PATTA_NO": 16, "Plot_no": 216, "Typeofland": "Private Land", "WonerName": "Md. Aftab Ali (Father: Late Nawab Ali), Shri Kutiram Masyadas (Father: Kamal), Shri Balaram Majumdar (Father: Prasanna Majumdar), Shri Kanu Ranjan Majumdar (Father: Prasanna Majumdar), Shri Suryakumar Majumdar (Father: Raj Mohan Majumdar), Shri Lalita Ba", "search_id": "216", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_6605a7816a048a1ee315f629ed097259.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_cf0e58a8eb1a63957acdca57aebae724 = L.marker(
+                [26.06441045619905, 92.8639236219874],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_5b632901421bcf5c2c8cf6776a23484e = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e216\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_cf0e58a8eb1a63957acdca57aebae724.setIcon(div_icon_5b632901421bcf5c2c8cf6776a23484e);
+            
+    
+        function geo_json_f557d3602c95da0e94f91150d2f68544_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_f557d3602c95da0e94f91150d2f68544_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_f557d3602c95da0e94f91150d2f68544_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_f557d3602c95da0e94f91150d2f68544.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_f557d3602c95da0e94f91150d2f68544_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_f557d3602c95da0e94f91150d2f68544 = L.geoJson(null, {
+                onEachFeature: geo_json_f557d3602c95da0e94f91150d2f68544_onEachFeature,
+            
+                style: geo_json_f557d3602c95da0e94f91150d2f68544_styler,
+            ...{
+}
+        });
+
+        function geo_json_f557d3602c95da0e94f91150d2f68544_add (data) {
+            geo_json_f557d3602c95da0e94f91150d2f68544
+                .addData(data);
+        }
+            geo_json_f557d3602c95da0e94f91150d2f68544_add({"features": [{"geometry": {"coordinates": [[[92.86426063258428, 26.064044689195093, 0.0], [92.8642800769881, 26.064161559804976, 0.0], [92.86434671102913, 26.064047209516346, 0.0], [92.86426063258428, 26.064044689195093, 0.0]]], "type": "Polygon"}, "properties": {"Area": "55.4834838913971", "Classi_Lan": "Land data not found", "PATTA_NO": 0, "Plot_no": 267, "Typeofland": "Land data not found", "WonerName": "Land data not found", "search_id": "267", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_f557d3602c95da0e94f91150d2f68544.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_755e4a3abe88dba228570a29c708e6ed = L.marker(
+                [26.064084486172142, 92.86429580686718],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_8f82d331188a8babb069ad6b6bf2dac4 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e267\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_755e4a3abe88dba228570a29c708e6ed.setIcon(div_icon_8f82d331188a8babb069ad6b6bf2dac4);
+            
+    
+        function geo_json_97e5792a3c6b1c9bd2af746bcb062c03_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_97e5792a3c6b1c9bd2af746bcb062c03_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_97e5792a3c6b1c9bd2af746bcb062c03_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_97e5792a3c6b1c9bd2af746bcb062c03.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_97e5792a3c6b1c9bd2af746bcb062c03_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_97e5792a3c6b1c9bd2af746bcb062c03 = L.geoJson(null, {
+                onEachFeature: geo_json_97e5792a3c6b1c9bd2af746bcb062c03_onEachFeature,
+            
+                style: geo_json_97e5792a3c6b1c9bd2af746bcb062c03_styler,
+            ...{
+}
+        });
+
+        function geo_json_97e5792a3c6b1c9bd2af746bcb062c03_add (data) {
+            geo_json_97e5792a3c6b1c9bd2af746bcb062c03
+                .addData(data);
+        }
+            geo_json_97e5792a3c6b1c9bd2af746bcb062c03_add({"features": [{"geometry": {"coordinates": [[[92.86467886327037, 26.063404845384966, 0.0], [92.86440540259112, 26.06341768267348, 0.0], [92.86431569026588, 26.063421893999124, 0.0], [92.86418899497629, 26.063639323455217, 0.0], [92.86419051358064, 26.063655568428366, 0.0], [92.86428709337041, 26.063660373793436, 0.0], [92.86448081268738, 26.063659336972396, 0.0], [92.86457237925441, 26.063659941592974, 0.0], [92.86472200823304, 26.063403164176687, 0.0], [92.86467886327037, 26.063404845384966, 0.0]]], "type": "Polygon"}, "properties": {"Area": "1080.20074371549", "Classi_Lan": "shaali toli,bari", "PATTA_NO": 102, "Plot_no": 269, "Typeofland": "Private Land", "WonerName": "Mr. Fayzul Haque (Father: Mr. Kutub Ali), Mrs. Sharifa Begum (Father: Mr. Abu Bakkar Siddique), Mr. Nripendra Majumdar (Father: Late Mr. Harmohan Majumdar), Mr. Harmohan Majumdar (Father: Mr. Golok), Mr. Taizuddin (Father: Mr. Arju Munshi), Mr. Nripendra", "search_id": "269", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_97e5792a3c6b1c9bd2af746bcb062c03.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_a88355b0ee3560f23a07db819e386425 = L.marker(
+                [26.06353562908673, 92.86445016808347],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_e1ce520a607f92ea6adf7270f38dcc80 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e269\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_a88355b0ee3560f23a07db819e386425.setIcon(div_icon_e1ce520a607f92ea6adf7270f38dcc80);
+            
+    
+        function geo_json_8237810d8c25ff3c0b18de1545a47800_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_8237810d8c25ff3c0b18de1545a47800_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_8237810d8c25ff3c0b18de1545a47800_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_8237810d8c25ff3c0b18de1545a47800.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_8237810d8c25ff3c0b18de1545a47800_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_8237810d8c25ff3c0b18de1545a47800 = L.geoJson(null, {
+                onEachFeature: geo_json_8237810d8c25ff3c0b18de1545a47800_onEachFeature,
+            
+                style: geo_json_8237810d8c25ff3c0b18de1545a47800_styler,
+            ...{
+}
+        });
+
+        function geo_json_8237810d8c25ff3c0b18de1545a47800_add (data) {
+            geo_json_8237810d8c25ff3c0b18de1545a47800
+                .addData(data);
+        }
+            geo_json_8237810d8c25ff3c0b18de1545a47800_add({"features": [{"geometry": {"coordinates": [[[92.86365560120008, 26.06487667380089, 0.0], [92.8635074814823, 26.06490834173885, 0.0], [92.8634415819126, 26.064921985439515, 0.0], [92.8631732035042, 26.065382551261912, 0.0], [92.86317320329891, 26.065382551614213, 0.0], [92.86317320275647, 26.0653825525451, 0.0], [92.86315937435356, 26.06540628343917, 0.0], [92.86326806270652, 26.06538131331661, 0.0], [92.8634657689985, 26.065334142875503, 0.0], [92.86361794866592, 26.065297834351373, 0.0], [92.8638956962685, 26.064821193312806, 0.0], [92.86365560120008, 26.06487667380089, 0.0]]], "type": "Polygon"}, "properties": {"Area": "2100.49286646273", "Classi_Lan": "shaali toli", "PATTA_NO": 128, "Plot_no": 217, "Typeofland": "Private Land", "WonerName": "Tarini Kumar Das (Father: Adhar Das), Ashwini Kumar Das (Father: Late Adhar Das), Adhir Kumar Das (Father: Late Adhar Das), Anukul Kumar Das (Father: Late Adhar Das), Sudhir Kumar Das (Father: Late Adhar Das), Pradip Kumar Das (Father: Late Adhar Das), M", "search_id": "217", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_8237810d8c25ff3c0b18de1545a47800.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_9026a4b5e6e088c844ae9bef43810ae6 = L.marker(
+                [26.06511284722884, 92.86352752637512],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_9aef2d0d19828f5c1919dd3419a0b3e8 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e217\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_9026a4b5e6e088c844ae9bef43810ae6.setIcon(div_icon_9aef2d0d19828f5c1919dd3419a0b3e8);
+            
+    
+        function geo_json_882a86221591e8dc1795bba3df990ac9_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_882a86221591e8dc1795bba3df990ac9_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_882a86221591e8dc1795bba3df990ac9_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_882a86221591e8dc1795bba3df990ac9.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_882a86221591e8dc1795bba3df990ac9_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_882a86221591e8dc1795bba3df990ac9 = L.geoJson(null, {
+                onEachFeature: geo_json_882a86221591e8dc1795bba3df990ac9_onEachFeature,
+            
+                style: geo_json_882a86221591e8dc1795bba3df990ac9_styler,
+            ...{
+}
+        });
+
+        function geo_json_882a86221591e8dc1795bba3df990ac9_add (data) {
+            geo_json_882a86221591e8dc1795bba3df990ac9
+                .addData(data);
+        }
+            geo_json_882a86221591e8dc1795bba3df990ac9_add({"features": [{"geometry": {"coordinates": [[[92.8634657689985, 26.065334142875503, 0.0], [92.86326806270652, 26.06538131331661, 0.0], [92.86315937435356, 26.06540628343917, 0.0], [92.86296238799285, 26.065744330135676, 0.0], [92.86299482647009, 26.065853134443895, 0.0], [92.86304358635017, 26.066000997621405, 0.0], [92.86308208075482, 26.06611773071477, 0.0], [92.86310183508009, 26.066177884653655, 0.0], [92.86310549342646, 26.066177255794713, 0.0], [92.86361794866592, 26.065297834351373, 0.0], [92.8634657689985, 26.065334142875503, 0.0]]], "type": "Polygon"}, "properties": {"Area": "2679.88926700666", "Classi_Lan": "shaali toli", "PATTA_NO": 106, "Plot_no": 218, "Typeofland": "Private Land", "WonerName": "Shri Surendra Nath (Father: Dulal), Shri Chamoru Mia (Father: Hachu Mia), Shri Nani Gopal Shil (Father: Devendra Kumar Shil)\n\n\n\n", "search_id": "218", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_882a86221591e8dc1795bba3df990ac9.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_5bc3d4adc29a2f005e2fbe2f5a6dcafd = L.marker(
+                [26.065670495919115, 92.86323242221478],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_ad20a0a6baf15ba43570d94319de646f = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e218\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_5bc3d4adc29a2f005e2fbe2f5a6dcafd.setIcon(div_icon_ad20a0a6baf15ba43570d94319de646f);
+            
+    
+        function geo_json_2c0b8dada3b51018c39add813e50592b_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_2c0b8dada3b51018c39add813e50592b_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_2c0b8dada3b51018c39add813e50592b_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_2c0b8dada3b51018c39add813e50592b.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_2c0b8dada3b51018c39add813e50592b_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_2c0b8dada3b51018c39add813e50592b = L.geoJson(null, {
+                onEachFeature: geo_json_2c0b8dada3b51018c39add813e50592b_onEachFeature,
+            
+                style: geo_json_2c0b8dada3b51018c39add813e50592b_styler,
+            ...{
+}
+        });
+
+        function geo_json_2c0b8dada3b51018c39add813e50592b_add (data) {
+            geo_json_2c0b8dada3b51018c39add813e50592b
+                .addData(data);
+        }
+            geo_json_2c0b8dada3b51018c39add813e50592b_add({"features": [{"geometry": {"coordinates": [[[92.86308208075482, 26.06611773071477, 0.0], [92.86304358635017, 26.066000997621405, 0.0], [92.86299482647009, 26.065853134443895, 0.0], [92.86296238799285, 26.065744330135676, 0.0], [92.86270461452679, 26.06618668971386, 0.0], [92.86270461226617, 26.06618669359327, 0.0], [92.86270461192254, 26.066186694182964, 0.0], [92.86267733607473, 26.06623350146296, 0.0], [92.86280224288754, 26.06621625055049, 0.0], [92.86303414398716, 26.06618952053467, 0.0], [92.86310183508009, 26.066177884653655, 0.0], [92.86308208075482, 26.06611773071477, 0.0]]], "type": "Polygon"}, "properties": {"Area": "1059.09124613417", "Classi_Lan": "shaali toli", "PATTA_NO": 27, "Plot_no": 206, "Typeofland": "Private Land", "WonerName": "Shri Chamoru Mia (Father: Hachu Mia), Shri Nani Gopal Shil (Father: Devendra Kumar)", "search_id": "206", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_2c0b8dada3b51018c39add813e50592b.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_71eb1c2f5a7e32a6475e5b639457fc8d = L.marker(
+                [26.06605299397569, 92.86291366587739],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_c9452891c7d9a8a4173231c2aedbc447 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e206\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_71eb1c2f5a7e32a6475e5b639457fc8d.setIcon(div_icon_c9452891c7d9a8a4173231c2aedbc447);
+            
+    
+        function geo_json_b0396d8229c977b62211195dbfa6fe2c_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_b0396d8229c977b62211195dbfa6fe2c_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_b0396d8229c977b62211195dbfa6fe2c_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_b0396d8229c977b62211195dbfa6fe2c.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_b0396d8229c977b62211195dbfa6fe2c_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_b0396d8229c977b62211195dbfa6fe2c = L.geoJson(null, {
+                onEachFeature: geo_json_b0396d8229c977b62211195dbfa6fe2c_onEachFeature,
+            
+                style: geo_json_b0396d8229c977b62211195dbfa6fe2c_styler,
+            ...{
+}
+        });
+
+        function geo_json_b0396d8229c977b62211195dbfa6fe2c_add (data) {
+            geo_json_b0396d8229c977b62211195dbfa6fe2c
+                .addData(data);
+        }
+            geo_json_b0396d8229c977b62211195dbfa6fe2c_add({"features": [{"geometry": {"coordinates": [[[92.86310183508009, 26.066177884653655, 0.0], [92.86303414398716, 26.06618952053467, 0.0], [92.86280224288754, 26.06621625055049, 0.0], [92.86267733607473, 26.06623350146296, 0.0], [92.86264365451044, 26.066291301345377, 0.0], [92.86265725637215, 26.066375708653123, 0.0], [92.86266969686362, 26.066452908889918, 0.0], [92.8626910272205, 26.06662365622441, 0.0], [92.86280670559248, 26.066607307953774, 0.0], [92.86285714599208, 26.066603443376337, 0.0], [92.86310549342646, 26.066177255794713, 0.0], [92.86310183508009, 26.066177884653655, 0.0]]], "type": "Polygon"}, "properties": {"Area": "1360.3158923774", "Classi_Lan": "shaali toli,bari", "PATTA_NO": 2, "Plot_no": 205, "Typeofland": "Private Land", "WonerName": "Shri Santosh Majumdar (Father: Late Kanu), Shri Narayan Majumdar (Father: Late Kanu), Shri Rabindra Majumdar (Father: Late Kanu), Shri Ganesh Majumdar (Father: Late Kanu), Smt. Sabindra Majumdar (Husband: Late Kanu), Md. Mujammil Ali (Father: Sarjyad Ali", "search_id": "205", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_b0396d8229c977b62211195dbfa6fe2c.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_47cca8718c57f415869e4b65859fab5d = L.marker(
+                [26.06637950358905, 92.86283209626113],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_8ea4531d5d34aaba8139fd8fa2888e98 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e205\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_47cca8718c57f415869e4b65859fab5d.setIcon(div_icon_8ea4531d5d34aaba8139fd8fa2888e98);
+            
+    
+        function geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_39b2a0f9c1564e73f9c0dc4d1c810417.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_39b2a0f9c1564e73f9c0dc4d1c810417 = L.geoJson(null, {
+                onEachFeature: geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_onEachFeature,
+            
+                style: geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_styler,
+            ...{
+}
+        });
+
+        function geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_add (data) {
+            geo_json_39b2a0f9c1564e73f9c0dc4d1c810417
+                .addData(data);
+        }
+            geo_json_39b2a0f9c1564e73f9c0dc4d1c810417_add({"features": [{"geometry": {"coordinates": [[[92.86264365451044, 26.066291301345377, 0.0], [92.8625915258637, 26.066380757562, 0.0], [92.86265725637215, 26.066375708653123, 0.0], [92.86264365451044, 26.066291301345377, 0.0]]], "type": "Polygon"}, "properties": {"Area": "31.1083825500191", "Classi_Lan": "shaali toli", "PATTA_NO": 148, "Plot_no": 204, "Typeofland": "Private Land", "WonerName": "Shri Khokon Chandra Majumdar (Father: Bhuvan Chandra Majumdar), Shri Prahlad Chandra Majumdar (Father: Bhuvan Chandra Majumdar), Shri Srikanta Majumdar (Father: Bhuvan Chandra Majumdar), Shri Shyamal Chandra Majumdar (Father: Bhuvan Chandra Majumdar), Sh", "search_id": "204", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_39b2a0f9c1564e73f9c0dc4d1c810417.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_53cbf77a1fda17b842ccb94523be7d81 = L.marker(
+                [26.0663492558535, 92.86263081224875],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_ab421f3051f907932371975769cc09b8 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e204\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_53cbf77a1fda17b842ccb94523be7d81.setIcon(div_icon_ab421f3051f907932371975769cc09b8);
+            
+    
+        function geo_json_e2a792f45f78d79f8292e6b9c4537ffe_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_e2a792f45f78d79f8292e6b9c4537ffe_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_e2a792f45f78d79f8292e6b9c4537ffe_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_e2a792f45f78d79f8292e6b9c4537ffe.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_e2a792f45f78d79f8292e6b9c4537ffe_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_e2a792f45f78d79f8292e6b9c4537ffe = L.geoJson(null, {
+                onEachFeature: geo_json_e2a792f45f78d79f8292e6b9c4537ffe_onEachFeature,
+            
+                style: geo_json_e2a792f45f78d79f8292e6b9c4537ffe_styler,
+            ...{
+}
+        });
+
+        function geo_json_e2a792f45f78d79f8292e6b9c4537ffe_add (data) {
+            geo_json_e2a792f45f78d79f8292e6b9c4537ffe
+                .addData(data);
+        }
+            geo_json_e2a792f45f78d79f8292e6b9c4537ffe_add({"features": [{"geometry": {"coordinates": [[[92.86269960265206, 26.066692301541732, 0.0], [92.8626910272205, 26.06662365622441, 0.0], [92.86266969686362, 26.066452908889918, 0.0], [92.86265725637215, 26.066375708653123, 0.0], [92.8625915258637, 26.066380757562, 0.0], [92.86232312399495, 26.066841350499406, 0.0], [92.86247549082707, 26.066823296514716, 0.0], [92.86267106479667, 26.06679439102877, 0.0], [92.86271391639295, 26.066788057601475, 0.0], [92.86269960265206, 26.066692301541732, 0.0]]], "type": "Polygon"}, "properties": {"Area": "1076.33605181124", "Classi_Lan": "shaali toli", "PATTA_NO": 135, "Plot_no": 203, "Typeofland": "Private Land", "WonerName": "Md. Tasir Ali (Late Wahab Ali alias Wab Ali), Shri Tilak Ram Mohirya Das (Father: Shankar Ram), Shri Lalit Mohan Das (Father: Late Tilak Ram Das), Shri Upendra Biswas (Father: Late Achai Ram), Shri Birendra Chandra Biswas (Father: Late Achai Ram), Mosamm", "search_id": "203", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_e2a792f45f78d79f8292e6b9c4537ffe.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_b11b4ca1ae7ed124526784640899d772 = L.marker(
+                [26.066648551990017, 92.86255843629958],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_bd0a9c046301e45a6961adead31d541e = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e203\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_b11b4ca1ae7ed124526784640899d772.setIcon(div_icon_bd0a9c046301e45a6961adead31d541e);
+            
+    
+        function geo_json_54a9909b47f56c2b93de3e6324157a25_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_54a9909b47f56c2b93de3e6324157a25_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_54a9909b47f56c2b93de3e6324157a25_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_54a9909b47f56c2b93de3e6324157a25.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_54a9909b47f56c2b93de3e6324157a25_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_54a9909b47f56c2b93de3e6324157a25 = L.geoJson(null, {
+                onEachFeature: geo_json_54a9909b47f56c2b93de3e6324157a25_onEachFeature,
+            
+                style: geo_json_54a9909b47f56c2b93de3e6324157a25_styler,
+            ...{
+}
+        });
+
+        function geo_json_54a9909b47f56c2b93de3e6324157a25_add (data) {
+            geo_json_54a9909b47f56c2b93de3e6324157a25
+                .addData(data);
+        }
+            geo_json_54a9909b47f56c2b93de3e6324157a25_add({"features": [{"geometry": {"coordinates": [[[92.86280670559248, 26.066607307953774, 0.0], [92.8626910272205, 26.06662365622441, 0.0], [92.86269960265206, 26.066692301541732, 0.0], [92.86273943993028, 26.0667432210466, 0.0], [92.86275820043656, 26.066773243266255, 0.0], [92.86285714599208, 26.066603443376337, 0.0], [92.86280670559248, 26.066607307953774, 0.0]]], "type": "Polygon"}, "properties": {"Area": "164.418973196522", "Classi_Lan": "shaali toli", "PATTA_NO": 143, "Plot_no": 221, "Typeofland": "Private Land", "WonerName": "Shri Swarnamoni Roy (Father - Late Satish Chandra Roy), Shri Amal Roy (Father - Late Jagadish Roy), Shri Parimal Roy (Father - Late Jagadish Roy), Shri Sajal Roy (Father - Late Jagadish Roy), Shri Rishikesh Roy (Father - Late Jagadish Roy), Shri Narayan", "search_id": "221", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_54a9909b47f56c2b93de3e6324157a25.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_bfaa5e0f877843e20f7a81c4c8cbd4a4 = L.marker(
+                [26.066668835931228, 92.86276340148274],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_558c7e069c92098f41c1d6c1dff40e12 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e221\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_bfaa5e0f877843e20f7a81c4c8cbd4a4.setIcon(div_icon_558c7e069c92098f41c1d6c1dff40e12);
+            
+    
+        function geo_json_c0c803b4d09406d7779c485cce448165_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_c0c803b4d09406d7779c485cce448165_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_c0c803b4d09406d7779c485cce448165_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_c0c803b4d09406d7779c485cce448165.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_c0c803b4d09406d7779c485cce448165_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_c0c803b4d09406d7779c485cce448165 = L.geoJson(null, {
+                onEachFeature: geo_json_c0c803b4d09406d7779c485cce448165_onEachFeature,
+            
+                style: geo_json_c0c803b4d09406d7779c485cce448165_styler,
+            ...{
+}
+        });
+
+        function geo_json_c0c803b4d09406d7779c485cce448165_add (data) {
+            geo_json_c0c803b4d09406d7779c485cce448165
+                .addData(data);
+        }
+            geo_json_c0c803b4d09406d7779c485cce448165_add({"features": [{"geometry": {"coordinates": [[[92.86272181566315, 26.066829970625328, 0.0], [92.86272262915148, 26.06683428694082, 0.0], [92.86272331960286, 26.066833102061235, 0.0], [92.86272181566315, 26.066829970625328, 0.0]]], "type": "Polygon"}, "properties": {"Area": "2.23991013287858E-02", "Classi_Lan": "shaali toli", "PATTA_NO": 0, "Plot_no": 202, "Typeofland": "Land data not found", "WonerName": "Land data not found", "search_id": "202", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_c0c803b4d09406d7779c485cce448165.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_781f7ec2f475ab996a3a51abb842df99 = L.marker(
+                [26.06683245320913, 92.86272258813915],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_bee1af9eb509d54b3972207186026f14 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e202\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_781f7ec2f475ab996a3a51abb842df99.setIcon(div_icon_bee1af9eb509d54b3972207186026f14);
+            
+    
+        function geo_json_7c2a3b0608485ba8d0c220949663f1da_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_7c2a3b0608485ba8d0c220949663f1da_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_7c2a3b0608485ba8d0c220949663f1da_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_7c2a3b0608485ba8d0c220949663f1da.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_7c2a3b0608485ba8d0c220949663f1da_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_7c2a3b0608485ba8d0c220949663f1da = L.geoJson(null, {
+                onEachFeature: geo_json_7c2a3b0608485ba8d0c220949663f1da_onEachFeature,
+            
+                style: geo_json_7c2a3b0608485ba8d0c220949663f1da_styler,
+            ...{
+}
+        });
+
+        function geo_json_7c2a3b0608485ba8d0c220949663f1da_add (data) {
+            geo_json_7c2a3b0608485ba8d0c220949663f1da
+                .addData(data);
+        }
+            geo_json_7c2a3b0608485ba8d0c220949663f1da_add({"features": [{"geometry": {"coordinates": [[[92.86273943993028, 26.0667432210466, 0.0], [92.86269960265206, 26.066692301541732, 0.0], [92.86271391639295, 26.066788057601475, 0.0], [92.86272181566315, 26.066829970625328, 0.0], [92.86272331960286, 26.066833102061235, 0.0], [92.86275820043656, 26.066773243266255, 0.0], [92.86273943993028, 26.0667432210466, 0.0]]], "type": "Polygon"}, "properties": {"Area": "38.0526578001521", "Classi_Lan": "Land data not found", "PATTA_NO": 0, "Plot_no": 231, "Typeofland": "Land data not found", "WonerName": "Land data not found", "search_id": "231", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_7c2a3b0608485ba8d0c220949663f1da.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_edebd41628939e424342cfb2737d1275 = L.marker(
+                [26.066765632544953, 92.86272663858578],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_92feb6b7a158a9686e808d2253e36507 = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e231\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_edebd41628939e424342cfb2737d1275.setIcon(div_icon_92feb6b7a158a9686e808d2253e36507);
+            
+    
+        function geo_json_efa33f8128ea978c8d7905c5d11d72f0_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_efa33f8128ea978c8d7905c5d11d72f0_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_efa33f8128ea978c8d7905c5d11d72f0_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_efa33f8128ea978c8d7905c5d11d72f0.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_efa33f8128ea978c8d7905c5d11d72f0_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_efa33f8128ea978c8d7905c5d11d72f0 = L.geoJson(null, {
+                onEachFeature: geo_json_efa33f8128ea978c8d7905c5d11d72f0_onEachFeature,
+            
+                style: geo_json_efa33f8128ea978c8d7905c5d11d72f0_styler,
+            ...{
+}
+        });
+
+        function geo_json_efa33f8128ea978c8d7905c5d11d72f0_add (data) {
+            geo_json_efa33f8128ea978c8d7905c5d11d72f0
+                .addData(data);
+        }
+            geo_json_efa33f8128ea978c8d7905c5d11d72f0_add({"features": [{"geometry": {"coordinates": [[[92.86272181566315, 26.066829970625328, 0.0], [92.86271391639295, 26.066788057601475, 0.0], [92.86267106479667, 26.06679439102877, 0.0], [92.86247549082707, 26.066823296514716, 0.0], [92.86232312399495, 26.066841350499406, 0.0], [92.86215629029711, 26.067127644562355, 0.0], [92.86235657069264, 26.067103282471383, 0.0], [92.86258882604747, 26.067063905666114, 0.0], [92.86272262915148, 26.06683428694082, 0.0], [92.86272181566315, 26.066829970625328, 0.0]]], "type": "Polygon"}, "properties": {"Area": "1238.94302659178", "Classi_Lan": "Land data not found", "PATTA_NO": 146, "Plot_no": 201, "Typeofland": "Private Land", "WonerName": "Shri Priyalal Saha (Father - Late Nityananda Saha), Md. Owatur Ali (Father - Late Anju Mia), Md. Abdur Rahman (Father - Owatur Ali), Md. Abdur Sattar (Father - Owatur Ali), Md. Abdur Jabbar (Father - Owatur Ali), Md. Moinul Haque (Father - Owatur Ali), M", "search_id": "201", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_efa33f8128ea978c8d7905c5d11d72f0.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_5fda4177f3ad7661afa71f8541f3d337 = L.marker(
+                [26.066957349231235, 92.86245120228394],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_a1113b0b96b293b541de8400833c962b = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e201\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_5fda4177f3ad7661afa71f8541f3d337.setIcon(div_icon_a1113b0b96b293b541de8400833c962b);
+            
+    
+        function geo_json_afc5a265a15c069e15c4101079537031_styler(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "green", "fillOpacity": 0.5, "weight": 1};
+            }
+        }
+        function geo_json_afc5a265a15c069e15c4101079537031_highlighter(feature) {
+            switch(feature.properties.Plot_no) {
+                default:
+                    return {"color": "red", "weight": 3};
+            }
+        }
+
+        function geo_json_afc5a265a15c069e15c4101079537031_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_afc5a265a15c069e15c4101079537031.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_afc5a265a15c069e15c4101079537031_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_afc5a265a15c069e15c4101079537031 = L.geoJson(null, {
+                onEachFeature: geo_json_afc5a265a15c069e15c4101079537031_onEachFeature,
+            
+                style: geo_json_afc5a265a15c069e15c4101079537031_styler,
+            ...{
+}
+        });
+
+        function geo_json_afc5a265a15c069e15c4101079537031_add (data) {
+            geo_json_afc5a265a15c069e15c4101079537031
+                .addData(data);
+        }
+            geo_json_afc5a265a15c069e15c4101079537031_add({"features": [{"geometry": {"coordinates": [[[92.86235657069264, 26.067103282471383, 0.0], [92.86215629029711, 26.067127644562355, 0.0], [92.86193483953498, 26.067507661465285, 0.0], [92.86193291943148, 26.067538653965396, 0.0], [92.86225328653515, 26.06745893767686, 0.0], [92.8623727840048, 26.067434654153708, 0.0], [92.86258882604747, 26.067063905666114, 0.0], [92.86235657069264, 26.067103282471383, 0.0]]], "type": "Polygon"}, "properties": {"Area": "1696.6106092995", "Classi_Lan": "shaali toli", "PATTA_NO": 125, "Plot_no": 200, "Typeofland": "Private Land", "WonerName": "Shri Bibek Majumdar (Father - Late Ratneshwar Majumdar), Shri Liton Majumdar (Father - Late Ratneshwar Majumdar), Shri Choton Majumdar (Father - Late Ratneshwar Majumdar), Shri Tuton Majumdar (Father - Late Ratneshwar Majumdar), Shri Khelu Majumdar (Fath", "search_id": "200", "search_type": "Plot_no"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_afc5a265a15c069e15c4101079537031.addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var marker_0c2dc1dcf6496d27ebaaae8af5c475cd = L.marker(
+                [26.067293062432007, 92.8622539727539],
+                {
+}
+            ).addTo(feature_group_2c20c01968bc6a197199a29004d37b85);
+        
+    
+            var div_icon_09244baccdcdf0889654870babd6a55b = L.divIcon({
+  "html": "\u003cdiv style=\u0027font-size:10pt; color:black;\u0027\u003e\u003cb\u003e200\u003c/b\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_0c2dc1dcf6496d27ebaaae8af5c475cd.setIcon(div_icon_09244baccdcdf0889654870babd6a55b);
+            
+    
+            feature_group_2c20c01968bc6a197199a29004d37b85.addTo(map_3b1b05b6b071b7db0d5a54836b56ae08);
+        
+    
+            var feature_group_b99a545d0d169df17b355afa63984752 = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_fbd5c275518211e420d7bfc30da708a7_styler(feature) {
+            switch(feature.properties.Woner) {
+                default:
+                    return {"opacity": 0};
+            }
+        }
+
+        function geo_json_fbd5c275518211e420d7bfc30da708a7_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_fbd5c275518211e420d7bfc30da708a7 = L.geoJson(null, {
+                onEachFeature: geo_json_fbd5c275518211e420d7bfc30da708a7_onEachFeature,
+            
+                style: geo_json_fbd5c275518211e420d7bfc30da708a7_styler,
+            ...{
+}
+        });
+
+        function geo_json_fbd5c275518211e420d7bfc30da708a7_add (data) {
+            geo_json_fbd5c275518211e420d7bfc30da708a7
+                .addData(data);
+        }
+            geo_json_fbd5c275518211e420d7bfc30da708a7_add({"features": [{"geometry": {"coordinates": [92.86361995620102, 26.064955179851687], "type": "Point"}, "properties": {"Compe_Area": "51.481", "Land_Type": "Private Land", "Plot_No": "217", "RoW_Area": "2049.013", "TF_Area": "26.781", "Tower_No": "23/2", "Tower_type": "DA+00", "Woner": "Tarini Kumar Das (Father: Adhar Das), Ashwini Kumar Das (Father: Late Adhar Das), Adhir Kumar Das (Father: Late Adhar Das), Anukul Kumar Das (Father: Late Adhar Das), Sudhir Kumar Das (Father: Late Adhar Das), Pradip Kumar Das (Father: Late Adhar Das), M", "search_id": "23/2", "search_type": "Tower_No"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_fbd5c275518211e420d7bfc30da708a7.addTo(feature_group_b99a545d0d169df17b355afa63984752);
+        
+    
+            var marker_6e09a1578bb3a0f52b919ce56355f482 = L.marker(
+                [26.064955179851687, 92.86361995620102],
+                {
+}
+            ).addTo(feature_group_b99a545d0d169df17b355afa63984752);
+        
+    
+        var icon_b7b2af9f99ff916c115ee13095f0d2a8 = L.icon({
+  "iconUrl": "data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBvbHlnb24gcG9pbnRzPSIxMiwyIDQsMjIgMjAsMjIiIGZpbGw9ImJsYWNrIiAvPgogIDxsaW5lIHgxPSIxMiIgeTE9IjIiIHgyPSIxMiIgeTI9IjIyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iOCIgeTE9IjEwIiB4Mj0iMTYiIHkyPSIxMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGxpbmUgeDE9IjYiIHkxPSIxNiIgeDI9IjE4IiB5Mj0iMTYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIvPgo8L3N2Zz4K",
+  "iconSize": [24, 24],
+});
+        
+    
+                marker_6e09a1578bb3a0f52b919ce56355f482.setIcon(icon_b7b2af9f99ff916c115ee13095f0d2a8);
+            
+    
+        function geo_json_cac1d5a9c76a07c2bb216e9b519d7613_styler(feature) {
+            switch(feature.properties.Woner) {
+                default:
+                    return {"opacity": 0};
+            }
+        }
+
+        function geo_json_cac1d5a9c76a07c2bb216e9b519d7613_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_cac1d5a9c76a07c2bb216e9b519d7613 = L.geoJson(null, {
+                onEachFeature: geo_json_cac1d5a9c76a07c2bb216e9b519d7613_onEachFeature,
+            
+                style: geo_json_cac1d5a9c76a07c2bb216e9b519d7613_styler,
+            ...{
+}
+        });
+
+        function geo_json_cac1d5a9c76a07c2bb216e9b519d7613_add (data) {
+            geo_json_cac1d5a9c76a07c2bb216e9b519d7613
+                .addData(data);
+        }
+            geo_json_cac1d5a9c76a07c2bb216e9b519d7613_add({"features": [{"geometry": {"coordinates": [92.86228818613661, 26.067240522370245], "type": "Point"}, "properties": {"Compe_Area": "51.481", "Land_Type": "Private Land", "Plot_No": "200", "RoW_Area": "1645.130", "TF_Area": "26.781", "Tower_No": "23/3", "Tower_type": "DA+00", "Woner": "Shri Bibek Majumdar (Father - Late Ratneshwar Majumdar), Shri Liton Majumdar (Father - Late Ratneshwar Majumdar), Shri Choton Majumdar (Father - Late Ratneshwar Majumdar), Shri Tuton Majumdar (Father - Late Ratneshwar Majumdar), And Others", "search_id": "23/3", "search_type": "Tower_No"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_cac1d5a9c76a07c2bb216e9b519d7613.addTo(feature_group_b99a545d0d169df17b355afa63984752);
+        
+    
+            var marker_6ed93f796d6d27435dc9094468ae0b55 = L.marker(
+                [26.067240522370245, 92.86228818613661],
+                {
+}
+            ).addTo(feature_group_b99a545d0d169df17b355afa63984752);
+        
+    
+                marker_6ed93f796d6d27435dc9094468ae0b55.setIcon(icon_b7b2af9f99ff916c115ee13095f0d2a8);
+            
+    
+            feature_group_b99a545d0d169df17b355afa63984752.addTo(map_3b1b05b6b071b7db0d5a54836b56ae08);
+        
+    
+            var tile_layer_fb68b9ec3b29733f011af584692962de = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_f71486f63bd0dfa9ac69194202e76c0c = new L.Control.MiniMap(
+                tile_layer_fb68b9ec3b29733f011af584692962de,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_3b1b05b6b071b7db0d5a54836b56ae08.addControl(mini_map_f71486f63bd0dfa9ac69194202e76c0c);
+        
+    
+            var measure_control_dde422c806b825d2c19ef9bdfd8bff60 = new L.Control.Measure(
+                {
+  "position": "topright",
+  "primaryLengthUnit": "meters",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_3b1b05b6b071b7db0d5a54836b56ae08.addControl(measure_control_dde422c806b825d2c19ef9bdfd8bff60);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_df54faa061ab7ad941ae4a034d3f7419_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_4283aeaaed4addc56314779095e65436,
+                },
+                overlays :  {
+                    "Corridor Boundary" : geo_json_3c2fd42c7912569ca420099f15385998,
+                    "Plots" : feature_group_2c20c01968bc6a197199a29004d37b85,
+                    "Towers" : feature_group_b99a545d0d169df17b355afa63984752,
+                },
+            };
+            let layer_control_df54faa061ab7ad941ae4a034d3f7419 = L.control.layers(
+                layer_control_df54faa061ab7ad941ae4a034d3f7419_layers.base_layers,
+                layer_control_df54faa061ab7ad941ae4a034d3f7419_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_3b1b05b6b071b7db0d5a54836b56ae08);
+
+        
+</script>
+</html>
